@@ -1,4 +1,5 @@
 # redpitaya
-programming stuff for redpitaya
 
-trying to adapt ptb-pid
+an adaption of the PID-PTB by Fenske
+
+by Patrick Knauer for the MPIK
