@@ -1,0 +1,25 @@
+.gosetting{
+	float: right;
+	text-align: right;
+	width: 35%;
+	padding-bottom: 7.5px;
+	padding-top: 7.5px;
+}
+.gotitle{
+	padding-bottom: 10px;
+}
+.goinfo{
+	float: left;
+	text-align: left;
+	width: 65%;
+	padding-bottom: 7.5px;
+	padding-top: 7.5px;
+}
+.gotitle2{
+	padding-bottom: 15px;
+	padding-top: 180px;
+}
+.gotitle3{
+	padding-bottom: 15px;
+	padding-top: 210px;
+}
