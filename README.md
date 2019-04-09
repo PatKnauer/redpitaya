@@ -7,4 +7,4 @@ by Patrick Knauer for the MPIK
 
 - the mpik-pid folder must be placed in opt/redpitaya/www/apps/
 - the fpga image must be placed in opt/redpitaya/fpga/
-- files that have been adapted: pid.c, pid.h, main.c, main.h, index.html
+- files that have been adapted: pid.c, pid.h, main.c, main.h, index.html, some images and .css files
