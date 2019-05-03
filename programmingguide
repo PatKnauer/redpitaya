@@ -1,0 +1,72 @@
+Developer Guide for the MPIK-PID Application by Patrick Knauer
+
+Most of the general information for the Red Pitaya can be found under https://redpitaya.readthedocs.io/en/latest/index.html
+
+
+setup:
+	- prepare SD card like here: https://redpitaya.readthedocs.io/en/latest/quickStart/SDcard/SDcard.html
+	- insert SD card into Red Pitaya (you cant compile with the SD card in your PC e.g.)
+	- after this there is generally no need to take out the SD card again other than setting it up
+	- connect Red Pitaya to the Ethernet (and power obviously)
+	- webpage can be found under IP address in your browser (check if the connection works by loading the page)
+
+
+programming on linux:
+
+	terminal commands for SSH connection:
+
+		1. ssh root@149.217.7.36 (the IP address)
+		password?->
+		2. root
+		3. rw (makes the SD card writable)
+
+	programming an app:
+
+		open files:
+		
+			1. ctrl+l
+			2. sftp://149.217.7.36/opt/redpitaya/www/apps (this is were the code for the apps is located)
+			3. open the app folder -> example mpik-pid: sftp://149.217.7.36/opt/redpitaya/www/apps/mpik-pid
+			
+			important files:
+
+			1. src 	-> C code for backend -> needs compiling after changes
+				-> compiling generates .o files and new controllerhf.so in one folder above
+				-> only does so when there is no .o and controllerhf.so file -> delete them first
+
+			2. index.html -> JavaScript and HTML code for frontend
+				-> changes are instant (reload webpage)
+
+	after changes to the C code:
+
+		1. delete old .o file (not all, just the one you changed)
+		2. delete old controllerhf.so file
+			(alternatively change the makefile code to automatically delete and compile)
+		3. go to terminal and type:	cd opt/redpitaya/www/apps/mpik-pid
+						make INSTALL_DIR=/opt/redpitaya		(this compiles the code)
+		4. if there are errors you might have missed something like a { -> terminal will give error messages
+		5. reload webpage and check changes
+
+mpik-pid workflow:
+
+	main.c:
+
+		main.c contains the code that calls other functions, the global variables and also refreshes the webpage and 			the shown variables. It also calls the functions that control the slow piezo correction and laser lock. If 			you add functions or variables you have to include them in the head file: main.h and change the parameters
+		like the maximal number of variables.
+
+
+	pid.c:
+
+		This contains the functions that control the FPGA and the automatic integrator reset. Here I added all 			functions that I needed (and included them in the pid.h file again).
+
+	worker.c:
+
+		This code loops and keeps updating/calling functions and variables. It calls the main functions as well. 			Changes to this part of the code can lead to delays that lead to time outs. Only change when you know
+		what you are doing.
+
+	index.hmtl:
+
+		The javascript part gets the variables from the backend and can send changes to the backend as well. The rest 			of the code is just logic to control the interface. The logic that controls the Red Pitaya is completely 			implemented in the source code.
+
+
+If you have questions I will gladly answer them: knaueraka@arcor.de
