@@ -51,22 +51,28 @@ mpik-pid workflow:
 
 	main.c:
 
-		main.c contains the code that calls other functions, the global variables and also refreshes the webpage and 			the shown variables. It also calls the functions that control the slow piezo correction and laser lock. If 			you add functions or variables you have to include them in the head file: main.h and change the parameters
+		main.c contains the code that calls other functions, the global variables and also refreshes the webpage and
+		the shown variables. It also calls the functions that control the slow piezo correction and laser lock. If
+		you add functions or variables you have to include them in the head file: main.h and change the parameters
 		like the maximal number of variables.
 
 
 	pid.c:
 
-		This contains the functions that control the FPGA and the automatic integrator reset. Here I added all 			functions that I needed (and included them in the pid.h file again).
+		This contains the functions that control the FPGA and the automatic integrator reset. Here I added all
+		functions that I needed (and included them in the pid.h file again).
 
 	worker.c:
 
-		This code loops and keeps updating/calling functions and variables. It calls the main functions as well. 			Changes to this part of the code can lead to delays that lead to time outs. Only change when you know
-		what you are doing.
+		This code loops and keeps updating/calling functions and variables. It calls the main.c functions as well.
+		Changes to this part of the code can lead to delays that lead to time outs. Only change when you know
+		what you are doing. (this also calls all the other .c files)
 
 	index.hmtl:
 
-		The javascript part gets the variables from the backend and can send changes to the backend as well. The rest 			of the code is just logic to control the interface. The logic that controls the Red Pitaya is completely 			implemented in the source code.
+		The javascript part gets the variables from the backend and can send changes to the backend as well. The rest
+		of the code is just logic to control the interface. The logic that controls the Red Pitaya is completely
+		implemented in the source code.
 
 
 If you have questions I will gladly answer them: knaueraka@arcor.de
