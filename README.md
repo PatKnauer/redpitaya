@@ -1,6 +1,6 @@
 # redpitaya PID web application
 
-an adaption of the PTB-PID by Fenskered_pitaya_top.bit
+an adaption of the PTB-PID by Fenske
 
 by Patrick Knauer for the MPIK
 
